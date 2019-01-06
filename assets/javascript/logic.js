@@ -74,9 +74,6 @@ database.ref().on("child_added", function (childSnapshot) {
     // console.log(minutesAway);
 
 
-
-
-
     // Create a new table row and append td
     var row = $('<tr>').append(
         $('<td>').text(name),
