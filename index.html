@@ -28,7 +28,7 @@
         <!-- Jumbotron at the top -->
         <div class="row">
             <div class="col-md-12">
-                <div class="jumbotron mt-3 p-3">
+                <div class="jumbotron mt-3 mb-4 p-3">
                     <h1 class="display-4">Welcome to the Train Scheduler</h1>
                     <p class="lead">Use the information below to determine when your next train will arrive.</p>
                     <hr class="my-4">
@@ -40,7 +40,7 @@
         <!-- Table displaying train data -->
         <div class="row">
             <div class="col-md-12">
-                <div class="card mb-5">
+                <div class="card mb-4">
                     <div class="card-header">
                         Upcoming Trains
                     </div>
@@ -77,10 +77,28 @@
                     <div class="card-header">
                         Add a Train
                     </div>
+                    <div class="card-body">
 
-                    <form>
-
-                    </form>
+                        <form>
+                            <div class="form-group">
+                                <label for="train-input">Train Name</label>
+                                <input type="text" id="train-input" class="form-control" placeholder="Blue Line">
+                            </div>
+                            <div class="form-group">
+                                <label for="destination-input">Destination</label>
+                                <input type="text" id="destination-input" class="form-control" placeholder="East Point">
+                            </div>
+                            <div class="form-group">
+                                <label for="time-input">First Train Time (HH:mm - Military Time)</label>
+                                <input type="text" id="time-input" class="form-control" placeholder="15:00">
+                            </div>
+                            <div class="form-group">
+                                <label for="frequency-input">Frequency (min)</label>
+                                <input type="text" id="frequency-input" class="form-control" placeholder="15">
+                            </div>
+                            <button type="submit" id="submit-btn" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
