@@ -39,3 +39,17 @@ $("#submit-btn").on("click", function (event) {
     $('#time-input').val('');
     $('#frequency-input').val('');
 });
+
+database.ref().on("child_added", function (childSnapshot) {
+
+    // Store firebase values as vars
+    var name = childSnapshot.val().name;
+    var dest = childSnapshot.val().destination;
+    var time = childSnapshot.val().time;
+    var freq = childSnapshot.val().frequency;
+    
+    // Create a new table row and append td
+
+    // Append row to table
+
+});
