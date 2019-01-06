@@ -13,6 +13,12 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
+// Global Vars
+var name = '';
+var destination = '';
+var time;
+var frequency;
+
 // On submit button Click:
 $("#submit-btn").on("click", function (event) {
 
@@ -20,10 +26,10 @@ $("#submit-btn").on("click", function (event) {
     event.preventDefault();
 
     // Grab the values in all inputs.
-    var name = $("#train-input").val().trim();
-    var destination = $("#destination-input").val().trim();
-    var time = $('#time-input').val().trim();
-    var frequency = $('#frequency-input').val().trim();
+    name = $("#train-input").val().trim();
+    destination = $("#destination-input").val().trim();
+    time = $('#time-input').val().trim();
+    frequency = $('#frequency-input').val().trim();
 
     // Store the values in Firebase.
     database.ref().push({
@@ -87,5 +93,3 @@ database.ref().on("child_added", function (childSnapshot) {
     $('#table').append(row);
 
 });
-
-
