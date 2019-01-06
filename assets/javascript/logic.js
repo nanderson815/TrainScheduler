@@ -13,19 +13,28 @@ firebase.initializeApp(config);
 var databse = firebase.database();
 
 // On submit button Click:
-$("#submit-btn").on("click", function(event){
+$("#submit-btn").on("click", function (event) {
 
-// Prevent Default.
-event.preventDefaul();
+    // Prevent Default.
+    event.preventDefaul();
 
-// Grab the values in all inputs.
-var name = $("#train-input").val().trim();
-var destination = $("#destination-input").val().trim();
-var time = $('#time-input').val().trim();
-var frequency = $('#frequency-input').val().trim();
+    // Grab the values in all inputs.
+    var name = $("#train-input").val().trim();
+    var destination = $("#destination-input").val().trim();
+    var time = $('#time-input').val().trim();
+    var frequency = $('#frequency-input').val().trim();
 
-// Store the values in Firebase.
+    // Store the values in Firebase.
+    datavase.ref().push({
+        name: name,
+        destination: destination,
+        time: time,
+        frequency: frequency
+    });
 
-// empty the input fields.
-
+    // empty the input fields.
+    $('#train-input').val('');
+    $('#destination-input').val('');
+    $('#time-input').val('');
+    $('#frequency-input').val('');
 });
