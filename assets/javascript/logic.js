@@ -49,22 +49,41 @@ database.ref().on("child_added", function (childSnapshot) {
     var freq = childSnapshot.val().frequency;
 
     // Math to get next train.
-    var firstTrain = moment("2013-02-08 0"+time).format("LT");
-    console.log(firstTrain);
+    var today = moment().format("YYYY-MM-DD")
+    // console.log(today);
 
-    var interval = parseInt(freq);
-    console.log(interval);
+    // Time of First Train Variable
+    var firstTrain = moment(today + " " + time);
+    // console.log(firstTrain);
 
-    var currentTime = moment(moment()).format("LT");
-    console.log(currentTime);
+    // Train Interval Var
+    interval = freq;
+    // console.log(interval);
+
+    // Current Time
+    var currentTime = moment();
+    // console.log(currentTime);
+
+    // Time until next train
+    var minutesAway = interval - ((currentTime.diff(firstTrain, 'minutes')) % interval);
+
+    // Calculates the next train time
+    var nextTrain = currentTime.add(minutesAway, 'm').format('LT');
+    // console.log(nextTrain);
+
+    // console.log(minutesAway);
+
+
+
+
 
     // Create a new table row and append td
     var row = $('<tr>').append(
         $('<td>').text(name),
         $('<td>').text(dest),
         $('<td>').text(freq),
-        $('<td>').text(time),
-        $('<td>').text("25")
+        $('<td>').text(nextTrain),
+        $('<td>').text(minutesAway)
     )
 
     // Append row to table
