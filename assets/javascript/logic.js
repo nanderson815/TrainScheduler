@@ -48,6 +48,16 @@ database.ref().on("child_added", function (childSnapshot) {
     var time = childSnapshot.val().time;
     var freq = childSnapshot.val().frequency;
 
+    // Math to get next train.
+    var firstTrain = moment("2013-02-08 0"+time).format("LT");
+    console.log(firstTrain);
+
+    var interval = parseInt(freq);
+    console.log(interval);
+
+    var currentTime = moment(moment()).format("LT");
+    console.log(currentTime);
+
     // Create a new table row and append td
     var row = $('<tr>').append(
         $('<td>').text(name),
