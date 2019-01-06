@@ -1,22 +1,23 @@
 
 // Initialize Firebase
+// Initialize Firebase
 var config = {
     apiKey: "AIzaSyAlROg2XASMhlYpjDwBWkXRSwWhUBDDdHs",
     authDomain: "trainscheduler-3c1f6.firebaseapp.com",
     databaseURL: "https://trainscheduler-3c1f6.firebaseio.com",
     projectId: "trainscheduler-3c1f6",
-    storageBucket: "",
+    storageBucket: "trainscheduler-3c1f6.appspot.com",
     messagingSenderId: "286160758806"
 };
 firebase.initializeApp(config);
 
-var databse = firebase.database();
+var database = firebase.database();
 
 // On submit button Click:
 $("#submit-btn").on("click", function (event) {
 
     // Prevent Default.
-    event.preventDefaul();
+    event.preventDefault();
 
     // Grab the values in all inputs.
     var name = $("#train-input").val().trim();
@@ -25,7 +26,7 @@ $("#submit-btn").on("click", function (event) {
     var frequency = $('#frequency-input').val().trim();
 
     // Store the values in Firebase.
-    datavase.ref().push({
+    database.ref().push({
         name: name,
         destination: destination,
         time: time,
