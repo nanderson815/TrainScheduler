@@ -80,10 +80,12 @@ database.ref().on("child_added", function (childSnapshot) {
         $('<td>').text(dest),
         $('<td>').text(freq),
         $('<td>').text(nextTrain),
-        $('<td>').text(minutesAway)
+        $('<td>').text(minutesAway).attr("id", "minutesAway")
     )
 
     // Append row to table
     $('#table').append(row);
 
 });
+
+
