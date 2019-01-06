@@ -47,9 +47,17 @@ database.ref().on("child_added", function (childSnapshot) {
     var dest = childSnapshot.val().destination;
     var time = childSnapshot.val().time;
     var freq = childSnapshot.val().frequency;
-    
+
     // Create a new table row and append td
+    var row = $('<tr>').append(
+        $('<td>').text(name),
+        $('<td>').text(dest),
+        $('<td>').text(freq),
+        $('<td>').text(time),
+        $('<td>').text("25")
+    )
 
     // Append row to table
+    $('#table').append(row);
 
 });
