@@ -87,7 +87,7 @@ database.ref().on("child_added", function (childSnapshot) {
         $('<td>').text(freq),
         $('<td>').text(nextTrain),
         $('<td>').text(minutesAway).attr("id", "minutesAway"),
-        $('<button>').text("Delete").attr("class", "btn btn-light mt-1")
+        $('<td>').html("<button id = 'remove-row-button' class = 'btn btn-light mt-1'>Remove</button>")
     )
 
     // Append row to table
