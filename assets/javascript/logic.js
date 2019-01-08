@@ -94,12 +94,17 @@ database.ref().on("child_added", function (childSnapshot) {
         $('<td>').text(freq),
         $('<td>').text(nextTrain),
         $('<td>').text(minutesAway).attr("id", "minutesAway"),
-        $('<td>').html("<button id = '" + childSnapshot.key + "' class = 'btn btn-light mt-1' data='" + tableRow + "'>Remove</button>")
+        $('<td>').html("<button id = '" + childSnapshot.key + "' class = 'btn btn-light mt-1 delete-row' data='" + tableRow + "'>Remove</button>")
     )
 
     tableRow++;
     // Append row to table
     $('#table').append(row);
+    
 
+});
+
+$(document.body).on("click", ".delete-row", function(){
+    console.log($(this).attr('data'));
 });
 
