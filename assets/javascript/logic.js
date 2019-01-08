@@ -75,17 +75,16 @@ database.ref().on("child_added", function (childSnapshot) {
     // Time until next train
 
     // Calculates the next train time
+    // If the first train has already arrived....
     if (firstTrain < currentTime) {
         var nextTrain = currentTime.add(minutesAway, 'm').format('LT');
         var minutesAway = interval - ((currentTime.diff(firstTrain, 'minutes')) % interval);
-
+    // If the first train of the day has not yet come...
     } else {
         var nextTrain = firstTrain.format('LT');
         var minutesAway = firstTrain.diff(currentTime, 'minutes');
     }
-    // console.log(nextTrain);
-
-    // console.log(minutesAway);
+   
 
 
     // Create a new table row and append td
