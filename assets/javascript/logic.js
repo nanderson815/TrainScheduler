@@ -95,7 +95,7 @@ database.ref().on("child_added", function (childSnapshot) {
         $('<td>').text(nextTrain),
         $('<td>').text(minutesAway).attr("id", "minutesAway"),
         $('<td>').html("<button id = '" + childSnapshot.key + "' class = 'btn btn-light mt-1 delete-row' data='" + tableRow + "'>Remove</button>")
-    )
+    ).attr("id", tableRow)
 
     tableRow++;
     // Append row to table
@@ -106,5 +106,6 @@ database.ref().on("child_added", function (childSnapshot) {
 
 $(document.body).on("click", ".delete-row", function(){
     console.log($(this).attr('data'));
+    $('#' + $(this).attr('data')).remove();
 });
 
