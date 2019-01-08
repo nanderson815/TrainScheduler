@@ -18,6 +18,8 @@ var name = '';
 var destination = '';
 var time;
 var frequency;
+var tableRow = 0;
+
 
 // On submit button Click:
 $("#submit-btn").on("click", function (event) {
@@ -47,7 +49,6 @@ $("#submit-btn").on("click", function (event) {
 });
 
 database.ref().on("child_added", function (childSnapshot) {
-
     console.log(childSnapshot.key);
 
     // Store firebase values as vars
@@ -77,14 +78,13 @@ database.ref().on("child_added", function (childSnapshot) {
     // Calculates the next train time
     // If the first train has already arrived....
     if (firstTrain < currentTime) {
-        var nextTrain = currentTime.add(minutesAway, 'm').format('LT');
         var minutesAway = interval - ((currentTime.diff(firstTrain, 'minutes')) % interval);
-    // If the first train of the day has not yet come...
+        var nextTrain = currentTime.add(minutesAway, 'm').format('LT');
+        // If the first train of the day has not yet come...
     } else {
         var nextTrain = firstTrain.format('LT');
         var minutesAway = firstTrain.diff(currentTime, 'minutes');
     }
-   
 
 
     // Create a new table row and append td
@@ -94,10 +94,12 @@ database.ref().on("child_added", function (childSnapshot) {
         $('<td>').text(freq),
         $('<td>').text(nextTrain),
         $('<td>').text(minutesAway).attr("id", "minutesAway"),
-        $('<td>').html("<button id = 'remove-row-button' class = 'btn btn-light mt-1'>Remove</button>")
+        $('<td>').html("<button id = '" + childSnapshot.key + "' class = 'btn btn-light mt-1' data='" + tableRow + "'>Remove</button>")
     )
 
+    tableRow++;
     // Append row to table
     $('#table').append(row);
 
 });
+
