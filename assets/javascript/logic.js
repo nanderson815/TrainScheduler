@@ -48,6 +48,8 @@ $("#submit-btn").on("click", function (event) {
 
 database.ref().on("child_added", function (childSnapshot) {
 
+    console.log(childSnapshot.key);
+
     // Store firebase values as vars
     var name = childSnapshot.val().name;
     var dest = childSnapshot.val().destination;
@@ -71,10 +73,16 @@ database.ref().on("child_added", function (childSnapshot) {
     // console.log(currentTime);
 
     // Time until next train
-    var minutesAway = interval - ((currentTime.diff(firstTrain, 'minutes')) % interval);
 
     // Calculates the next train time
-    var nextTrain = currentTime.add(minutesAway, 'm').format('LT');
+    if (firstTrain < currentTime) {
+        var nextTrain = currentTime.add(minutesAway, 'm').format('LT');
+        var minutesAway = interval - ((currentTime.diff(firstTrain, 'minutes')) % interval);
+
+    } else {
+        var nextTrain = firstTrain.format('LT');
+        var minutesAway = firstTrain.diff(currentTime, 'minutes');
+    }
     // console.log(nextTrain);
 
     // console.log(minutesAway);
