@@ -49,7 +49,7 @@ $("#submit-btn").on("click", function (event) {
 });
 
 database.ref().on("child_added", function (childSnapshot) {
-    console.log(childSnapshot.key);
+    // console.log(childSnapshot.key);
 
     // Store firebase values as vars
     var name = childSnapshot.val().name;
@@ -105,7 +105,9 @@ database.ref().on("child_added", function (childSnapshot) {
 });
 
 $(document.body).on("click", ".delete-row", function(){
-    console.log($(this).attr('data'));
+    // console.log($(this).attr('data'));
     $('#' + $(this).attr('data')).remove();
+    // console.log($(this).attr('id'));
+    database.ref().child($(this).attr('id')).remove();
 });
 
